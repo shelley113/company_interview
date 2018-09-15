@@ -11,6 +11,15 @@ class Robot
     end
 
     def validation
+        if @positionX != nil && @positionY != nil
+            return true
+        else
+            return false
+        end
+
+    end
+
+    def operation
         case @direction
         when "NORTH"
             if @positionY != 4
@@ -59,25 +68,28 @@ class Robot
 
     def start(fileName)
         lines = File.readlines(fileName)
-        robotInformation = lines[0].delete("\n")
-        initial = robotInformation[6,robotInformation.length].split(",")
-        
-        @positionX = initial[0].to_i
-        @positionY = initial[1].to_i
-        @direction = initial[2]
-
         for commond in lines do
-            case commond.delete("\n")
-            when "MOVE"
-              validation
-            when "LEFT"
-              turnLeft
-            when "RIGHT"
-              turnRight
-            when "REPORT"
-                display_information
+            if commond[0,5] == "PLACE"
+                if commond[6,7].to_i >= 0 && commond[6,7].to_i <= 4 && commond[8,9].to_i >=0 && commond[8,9].to_i <= 4
+                    @positionX = commond[6,7].to_i
+                    @positionY = commond[8,9].to_i
+                    @direction = commond[10,commond.length].delete("\n")
+                end
             else
-              "Ignore"
+                if validation 
+                    case commond.delete("\n")
+                    when "MOVE"
+                         operation
+                    when "LEFT"
+                         turnLeft
+                    when "RIGHT"
+                         turnRight
+                    when "REPORT"
+                         display_information
+                    else
+                         "Ignore"
+                    end
+                end
             end
         end
 
