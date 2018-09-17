@@ -5,7 +5,9 @@ Toy Robot can move based on the commond
 
 ### Project information
 
-1. There are 5 different kinds of commond you can use to control your toy robot
+1. This project is based on Ruby language
+
+2. There are 5 different kinds of commond you can use to control your toy robot
 
 ```
     PLACE X,Y,F
@@ -15,9 +17,9 @@ Toy Robot can move based on the commond
     REPORT
 ```
 
-2. Commonds are store in the data.rb file
+3. Commonds are store in the data.rb file
 
-3. You can modify data.rb file to match your testing.
+4. You can modify data.rb file to match your testing.
 
 ### Installing
 
